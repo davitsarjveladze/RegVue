@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="vue.js"></script>
+    <title>VueReg</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div v-show="chans" class="app">
+        <h2>Registration</h2>
+        <form @submit.prevent="addUser">
+          <p>Name</p>
+          <input v-model.trim="user.name" type="text" />
+          <p>Age</p>
+          <input v-model.number.trim="user.age" type="number" />
+          <p>Mail</p>
+          <input v-model.trim="user.mail" type="email" />
+          <p>Other</p>
+          <textarea
+            v-model.trim="user.other"
+            id=""
+            cols="30"
+            rows="10"
+          ></textarea>
+
+          <button class="btn" type="submit">submit</button>
+        </form>
+      </div>
+
+      <div v-show="!chans">
+        <div v-for="(value, name) in user">
+          <table>
+            <tr>
+              <td><p>{{name}}</p></td>
+              <td><p>{{value}}</p></td>
+            </tr>
+          </table>
+        </div>
+
+        <button class="btn" @click="deleteUser">Delete user</button>
+        <button class="btn" @click="chans = !chans">Change</button>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
